@@ -21,6 +21,12 @@ function App() {
       <div>
         VAMOS A VER COMO FUNCIONA GIT
       </div>
+      <div>
+        VAMOS A VER COMO FUNCIONA GIT
+      </div>
+      <div>
+        VAMOS A VER COMO FUNCIONA GIT
+      </div>
     </div>
   );
 }
