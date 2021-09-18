@@ -1,18 +1,18 @@
-import React,{useState} from "react";
-import "./App.css";
+import React,{useState} from 'react'
 
+const Search = () => {
 
-const App = () => {
-
-  const [search, setSearch] = useState('')
+    const [search, setSearch] = useState('')
     const searchName = (e) => {
         setSearch(e.target.value)
     }
     
-  return (
-    <>
-      <h3>PHONEBOOK</h3>
-      <form htmlFor={'my input'}>
+
+
+
+    return (
+        <>
+            <form htmlFor={'my input'}>
                 <input 
                     type="text"
                     value={search}
@@ -21,8 +21,8 @@ const App = () => {
                 />
             </form>
             
-    </>
-  );
-};
+        </>
+    )
+}
 
-export default App;
+export default Search
