@@ -16,22 +16,18 @@ const App = () => {
     setSearch(e.target.value);
   };
 
-  const filterName = namePhones.filter(namePhone =>
-    namePhone.name.toLocaleLowerCase()
-    .includes(search.toLocaleLowerCase())
-    )
+  const filterName = namePhones.filter((namePhone) =>
+    namePhone.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+  );
   const showNameNumber = (filterName) => {
-    if(filterName.length > 5){
-      return 'Keep writing'
+    if (filterName.length > 5) {
+      return "Keep writing";
     }
     if (filterName.length <= 5 && filterName > 1) {
-      return(
-        filterName
-      )
+      return filterName;
     }
-  }
-  
-  
+  };
+
   const showNames = () => {
     return namePhones.map((namePhone) => (
       <div key={namePhone.id}>{namePhone.name}</div>
@@ -50,8 +46,8 @@ const App = () => {
           onChange={searchName}
         />
       </form>
-      <br/>
-      <br/>
+      <br />
+      <br />
       <div> {showNames()} </div>
     </>
   );
