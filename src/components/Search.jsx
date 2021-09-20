@@ -1,28 +1,23 @@
-import React,{useState} from 'react'
+import React, { useState } from "react";
 
 const Search = () => {
+  const [search, setSearch] = useState("");
+  const searchName = (e) => {
+    setSearch(e.target.value);
+  };
 
-    const [search, setSearch] = useState('')
-    const searchName = (e) => {
-        setSearch(e.target.value)
-    }
-    
+  return (
+    <>
+      <form htmlFor={"my input"}>
+        <input
+          type="text"
+          value={search}
+          placeholder={"Name"}
+          onChange={searchName}
+        />
+      </form>
+    </>
+  );
+};
 
-
-
-    return (
-        <>
-            <form htmlFor={'my input'}>
-                <input 
-                    type="text"
-                    value={search}
-                    placeholder={'Name'}
-                    onChange={searchName}                
-                />
-            </form>
-            
-        </>
-    )
-}
-
-export default Search
+export default Search;
