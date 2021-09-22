@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import ShowNamesNumbers from "./components/ShowNamesNumbers";
 import ShowPhoneBook from "./components/ShowPhoneBook";
-import servicesAxios from './services/crudAxios.js'
+import servicesAxios from "./services/crudAxios.js";
 
 const App = () => {
   const [search, setSearch] = useState("");
   const [namePhones, setnamePhones] = useState([]);
-  const [newUser, setNewUser] = useState('')
-  
+  const [newUser, setNewUser] = useState("");
 
   useEffect(() => {
     servicesAxios.getAll().then((initialName) => {
@@ -23,45 +23,20 @@ const App = () => {
     namePhone.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
   );
 
-
-  const showNameNumber = () => {
-    if (filterName.length > 5) {
-      return "Keep writing";
-    }
-    if (filterName.length <= 5 && filterName.length > 1) {
-      return filterName.map((namePhone) =>(
-        <div key={namePhone.id}>{namePhone.name}: {namePhone.phone}</div>
-      ));
-    }
-    if (filterName.length === 1) {
-      return filterName.map((namePhone) =>(
-        <div key={namePhone.id}>{namePhone.name}: {namePhone.phone}</div>
-      ));
-    }
-  };
-  
-  const showNames = () => {
-    return namePhones.map((namePhone) => (
-      <div key={namePhone.id}>{namePhone.name}</div>
-    ));
-  };
   const handleUserInsert = (e) => {
-    setNewUser(e.target.value)
-  }
-  
+    setNewUser(e.target.value);
+  };
+
   const addUser = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const userObject = {
       name: newUser,
-    }
-    servicesAxios.create(userObject)
-      .then(returedUser =>{
-        setnamePhones([...namePhones, userObject])
-      })
-    setNewUser('')
-  }
-  console.log(namePhones)
-  
+    };
+    servicesAxios.create(userObject).then((returedUser) => {
+      setnamePhones([...namePhones, userObject]);
+    });
+    setNewUser("");
+  };
 
   return (
     <>
@@ -79,20 +54,19 @@ const App = () => {
       <br />
       <div>Add User</div>
       <form onSubmit={addUser}>
-        <input 
-          type="text" 
+        <input
+          type="text"
           value={newUser}
-          placeholder={'Insert New User'}
+          placeholder={"Insert New User"}
           onChange={handleUserInsert}
         />
-
       </form>
-       
-      <h5>{showNameNumber()}</h5>
+      <h5>
+        <ShowNamesNumbers filterName={filterName} />
+      </h5>
+
       <br />
-      <ShowPhoneBook namePhones={namePhones}/>
-      
-      <div> {showNames()} </div>
+      <ShowPhoneBook namePhones={namePhones} />
     </>
   );
 };
